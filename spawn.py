@@ -14,3 +14,5 @@ def spawn():
         ywumpus=randrange(1,5)
     spawnplaatsWumpus = (xwumpus,ywumpus)
     return spawnplaatsSelf,spawnplaatsWumpus
+    
+
