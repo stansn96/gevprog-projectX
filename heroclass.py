@@ -8,8 +8,8 @@ class Hero():
 		self.naam = naam
 		self.pijlen = 3
 		self.gold = 0
-		self.locatieheld = [locatieheld[0],locatieheld[1]]
 		self.winst = False
+		self.dood = False
 		self.plaatsen()
 		
 	def plaatsen(self):
@@ -24,12 +24,9 @@ class Hero():
 			self.herplaatsen()
 		else:
 			self.updatepositie()
-			
-	def returnxylocatieheld(self):
-		return self.xcoor, self.ycoor
 		
 	def returnlocatieheld(self):
-		return self.locatieheld
+		return self.positie
 		
 	def goudgevonden(self):
 		self.goud = self.goud + 1
@@ -73,22 +70,28 @@ class Hero():
 				else: 
 					wumpus.respawnwumpus()
 		
-		def __str__(self):
-			return "Naam van de held: {} Positie(x,y) {} Aantal goud: {} Aantal pijlen: {}".format(self.naam,self.positie,self.goud,self.pijlen)
+	def __str__(self):
+		return "Naam van de held: {} Positie(x,y) {} Aantal goud: {} Aantal pijlen: {}".format(self.naam,self.positie,self.goud,self.pijlen)
 			
-		def updatepositie():
-			self.positie = (self.xcoor,self.ycoor)
-			return self.positie
+	def updatepositie(self):
+		self.positie = (self.xcoor,self.ycoor)
+		return self.positie
 		
 
 
 def main():   
-	held = Hero('Stan',grot.returnherocoords())
-	heldplaats = held.plaatsen()
-	wumpus = Wumpus(heldplaats)
-	grot = Grottengenerator(heldplaats, wumpus.plaatsen())
-	
-	wumpus = Wumpus([1,1],held.returnlocatieheld)
-	print(held.returnlocatieheld())
+	held = Hero('Stan')
+	held.plaatsen()
+	wumpus = Wumpus(held.updatepositie())
+	grot = Grottengenerator(held.updatepositie(), wumpus.plaatswumpus())
+	print(held.updatepositie())
+	wumpus.jagen(held.updatepositie())
+	print(wumpus.getplaatswumpus())
+	wumpus.jagen(held.updatepositie())
+	print(wumpus.getplaatswumpus())
+	wumpus.jagen(held.updatepositie())
+	print(wumpus.getplaatswumpus())
+	wumpus.jagen(held.updatepositie())
+	print(wumpus.getplaatswumpus())
 	
 main()

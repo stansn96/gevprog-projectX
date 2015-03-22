@@ -14,7 +14,7 @@ class Grottengenerator():
 		for y in range(1,5):
 			for x in range(1,6):
 				self.grotten.append([(x,y), None])
-		return self.grotten		
+		return self.grotten
 
 	def elementen(self):
 		"""Voeg goud, vleermuizen en putten toe"""
