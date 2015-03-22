@@ -75,13 +75,19 @@ class Hero():
 		
 		def __str__(self):
 			return "Naam van de held: {} Positie(x,y) {} Aantal goud: {} Aantal pijlen: {}".format(self.naam,self.positie,self.goud,self.pijlen)
+			
+		def updatepositie():
+			self.positie = (self.xcoor,self.ycoor)
+			return self.positie
 		
 
 
-def main():
-	spawnplaatsSelf, spawnplaatsWumpus = spawn()    
-	grot = Grottengenerator(spawnplaatsSelf, spawnplaatsWumpus)
+def main():   
 	held = Hero('Stan',grot.returnherocoords())
+	heldplaats = held.plaatsen()
+	wumpus = Wumpus(heldplaats)
+	grot = Grottengenerator(heldplaats, wumpus.plaatsen())
+	
 	wumpus = Wumpus([1,1],held.returnlocatieheld)
 	print(held.returnlocatieheld())
 	
