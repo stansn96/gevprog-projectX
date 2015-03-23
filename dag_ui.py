@@ -24,7 +24,10 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_Form(object):
+class Ui_Form(QtGui.QWidget):
+    def __init__(self):
+        QtGui.QWidget.__init__(self)
+        self.setupUi(self)
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(969, 674)
@@ -116,4 +119,9 @@ class Ui_Form(object):
         self.BtnDown.setText(_translate("Form", "Down", None))
         self.BtnRight.setText(_translate("Form", "Right", None))
 
+if __name__ == '__main__':
+    app=QtGui.QApplication(sys.argv)
+    ex=Ui_Form()
+    ex.show()
+    sys.exit(app.exec_())
 
