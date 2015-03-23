@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'dag.ui'
@@ -35,11 +36,12 @@ class Ui_Form(QtGui.QWidget):
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 1, 3, 1, 1)
-        self.Map = QtGui.QGraphicsView(Form)
+        map_wumpus = QtGui.QPixmap("kamers.png")
+        self.Map = QtGui.QLabel(Form)
         self.Map.setMaximumSize(QtCore.QSize(16777215, 687))
-        self.Map.setSceneRect(QtCore.QRectF(0.0, 0.0, 1.0, 0.0))
         self.Map.setAlignment(QtCore.Qt.AlignCenter)
         self.Map.setObjectName(_fromUtf8("Map"))
+        self.Map.setPixmap(map_wumpus)
         self.gridLayout.addWidget(self.Map, 1, 1, 1, 1)
         spacerItem1 = QtGui.QSpacerItem(20, 200, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
         self.gridLayout.addItem(spacerItem1, 2, 1, 1, 1)
@@ -108,6 +110,13 @@ class Ui_Form(QtGui.QWidget):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+        self.BtnMove.clicked.connect(FUNCTIE)
+        self.BtnShoot.clicked.connect(FUNCTIE)
+        self.BtnUp.clicked.connect(FUNCTIE)
+        self.BtnDown.clicked.connect(FUNCTIE)
+        self.BtnRight.clicked.connect(FUNCTIE)
+        self.BtnLeft.clicked.connect(FUNCTIE)
+
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Form", None))
         self.ArrowLabel.setText(_translate("Form", "Arrows", None))
@@ -118,10 +127,10 @@ class Ui_Form(QtGui.QWidget):
         self.BtnLeft.setText(_translate("Form", "Left", None))
         self.BtnDown.setText(_translate("Form", "Down", None))
         self.BtnRight.setText(_translate("Form", "Right", None))
+        
 
 if __name__ == '__main__':
     app=QtGui.QApplication(sys.argv)
     ex=Ui_Form()
     ex.show()
     sys.exit(app.exec_())
-
