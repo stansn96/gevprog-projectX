@@ -31,14 +31,14 @@ class Ui_Form(QtGui.QWidget):
         self.setupUi(self)
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
-        Form.resize(969, 674)
+        Form.resize(600, 400)
         self.gridLayout = QtGui.QGridLayout(Form)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 1, 3, 1, 1)
         map_wumpus = QtGui.QPixmap("kamers.png")
         self.Map = QtGui.QLabel(Form)
-        self.Map.setMaximumSize(QtCore.QSize(16777215, 687))
+        self.Map.setMaximumSize(QtCore.QSize(600, 400))
         self.Map.setAlignment(QtCore.Qt.AlignCenter)
         self.Map.setObjectName(_fromUtf8("Map"))
         self.Map.setPixmap(map_wumpus)
@@ -110,12 +110,30 @@ class Ui_Form(QtGui.QWidget):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-        self.BtnMove.clicked.connect(FUNCTIE)
-        self.BtnShoot.clicked.connect(FUNCTIE)
-        self.BtnUp.clicked.connect(FUNCTIE)
-        self.BtnDown.clicked.connect(FUNCTIE)
-        self.BtnRight.clicked.connect(FUNCTIE)
-        self.BtnLeft.clicked.connect(FUNCTIE)
+        self.BtnMove.clicked.connect(self.eventHandlerMove)
+        self.BtnShoot.clicked.connect(self.eventHandlerShoot)
+        self.BtnUp.clicked.connect(self.eventHandlerUp)
+        self.BtnDown.clicked.connect(self.eventHandlerDown)
+        self.BtnRight.clicked.connect(self.eventHandlerRight)
+        self.BtnLeft.clicked.connect(self.eventHandlerLeft)
+
+    def eventHandler(self, event):
+        if event == "up":
+                # self.hunter.moveup()
+            self.movehero("up")
+        if event == "down":
+                # self.hunter.movedown()
+            self.movehero("down")
+        if event == "left":
+                # self.hunter.moveleft()
+            self.movehero("left")
+        if event == "right":
+                # self.hunter.moveright()
+            self.movehero("right")
+        if event == "shoot":
+            self.hunter.shoot()
+        if event == "move":
+            self.workThread.action = "move"
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(_translate("Form", "Form", None))
@@ -145,6 +163,8 @@ class Ui_Form(QtGui.QWidget):
 
     def eventHandlerShoot(self):
         self.eventHandler("shoot")
+    
+    
 
 
 if __name__ == '__main__':
