@@ -60,11 +60,22 @@ class Wumpus():
 				self.ypos = self.ypos -1
 			else:
 				self.ypos = self.ypos +1
-		self.updatepositie()
+				
+		if self.xpos < 1:
+			self.xpos = 5
+		if self.xpos > 5:
+			self.xpos = 1
+		if self.ypos < 1:
+			self.ypos = 5
+		if self.ypos > 5:
+			self.ypos = 1
 		
+		self.updatepositie()
 		
 	def updatepositie(self):
 		self.wumpuspositie = (self.xpos,self.ypos)
 		return self.wumpuspositie
+		
+	
 		
 

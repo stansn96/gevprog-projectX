@@ -76,22 +76,7 @@ class Hero():
 	def updatepositie(self):
 		self.positie = (self.xcoor,self.ycoor)
 		return self.positie
-		
 
 
-def main():   
-	held = Hero('Stan')
-	held.plaatsen()
-	wumpus = Wumpus(held.updatepositie())
-	grot = Grottengenerator(held.updatepositie(), wumpus.plaatswumpus())
-	print(held.updatepositie())
-	wumpus.jagen(held.updatepositie())
-	print(wumpus.getplaatswumpus())
-	wumpus.jagen(held.updatepositie())
-	print(wumpus.getplaatswumpus())
-	wumpus.jagen(held.updatepositie())
-	print(wumpus.getplaatswumpus())
-	wumpus.jagen(held.updatepositie())
-	print(wumpus.getplaatswumpus())
-	
-main()
+
+

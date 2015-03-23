@@ -8,6 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+import sys
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -114,4 +115,5 @@ class Ui_Form(object):
         self.BtnLeft.setText(_translate("Form", "Left", None))
         self.BtnDown.setText(_translate("Form", "Down", None))
         self.BtnRight.setText(_translate("Form", "Right", None))
+
 
