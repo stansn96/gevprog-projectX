@@ -128,6 +128,24 @@ class Ui_Form(QtGui.QWidget):
         self.BtnDown.setText(_translate("Form", "Down", None))
         self.BtnRight.setText(_translate("Form", "Right", None))
         
+    def eventHandlerRight(self):
+        self.eventHandler("right")
+
+    def eventHandlerLeft(self):
+        self.eventHandler("left")
+
+    def eventHandlerUp(self):
+        self.eventHandler("up")
+
+    def eventHandlerDown(self):
+        self.eventHandler("down")
+
+    def eventHandlerMove(self):
+        self.eventHandler("move")
+
+    def eventHandlerShoot(self):
+        self.eventHandler("shoot")
+
 
 if __name__ == '__main__':
     app=QtGui.QApplication(sys.argv)
