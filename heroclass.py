@@ -7,7 +7,7 @@ class Hero():
 	def __init__(self,naam):
 		self.naam = naam
 		self.pijlen = 3
-		self.gold = 0
+		self.goud = 0
 		self.winst = False
 		self.dood = False
 		self.plaatsen()
@@ -72,6 +72,30 @@ class Hero():
 		
 	def __str__(self):
 		return "Naam van de held: {} Positie(x,y) {} Aantal goud: {} Aantal pijlen: {}".format(self.naam,self.positie,self.goud,self.pijlen)
+		
+	def moveup(self):
+		self.ycoor -= 1  # due to inverted coordinates of UI
+		if self.ycoor < 1:
+			self.ycoor = 4
+		self.updatepositie()
+
+	def moveright(self):
+		self.xcoor += 1
+		if self.xcoor > 5:
+			self.xcoor = 1
+		self.updatepositie()
+
+	def movedown(self):
+		self.ycoor += 1  # due to inverted coordinates of UI
+		if self.ycoor > 4:
+			self.ycoor = 1
+		self.updatepositie()
+
+	def moveleft(self):
+		self.xcoor -= 1
+		if self.xcoor < 1:
+			self.xcoor = 5
+		self.updatepositie()
 			
 	def updatepositie(self):
 		self.positie = (self.xcoor,self.ycoor)

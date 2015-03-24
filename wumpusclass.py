@@ -5,9 +5,9 @@ from random import *
 
 class Wumpus():
 	def __init__(self, locatieheld):
-		self.locatieheld = locatieheld
-		self.xhero = self.locatieheld[0]
-		self.yhero = self.locatieheld[1]
+		self.xposheld = locatieheld[0]
+		self.yposheld = locatieheld[1]
+		self.plaatswumpus()
 		
 	def getplaatswumpus(self):
 		return self.xpos, self.ypos
@@ -16,9 +16,9 @@ class Wumpus():
 		self.xpos= randrange(1,6)
 		self.ypos=randrange(1,5)
 		spawnplaatsWumpus = (self.xpos,self.ypos)
-		while abs(self.xpos - self.xhero) <2:
+		while abs(self.xpos - self.xposheld) <2:
 			self.xpos= randrange(1,6)
-		while abs(self.ypos - self.yhero) <2:     
+		while abs(self.ypos - self.yposheld) <2:     
 			self.ypos=randrange(1,5)
 		self.updatepositie()
 		
@@ -38,8 +38,7 @@ class Wumpus():
 		return [self.xpos,self.ypos]
 		
 	def jagen(self,locatieheld):
-		self.xposheld = locatieheld[0]
-		self.yposheld = locatieheld[1]
+		self.xposheld, self.yposheld = locatieheld
 		xafstand = abs(self.xpos - self.xposheld)
 		yafstand = abs(self.ypos - self.yposheld)
 		if self.xpos > self.xposheld:
