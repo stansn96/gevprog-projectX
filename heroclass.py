@@ -17,13 +17,21 @@ class Hero():
 		self.ycoor = randrange(1,5)
 		self.updatepositie()
 	
-	def herplaatsen(self):
+	def herplaatsen(self,wumpuspositie):
 		self.xcoor = randrange(1,6)
 		self.ycoor = randrange(1,5)
-		if (self.xcoor, self.ycoor) == self.wumpuspositie:
+		if (self.xcoor, self.ycoor) == wumpuspositie:
 			self.herplaatsen()
 		else:
 			self.updatepositie()
+	
+	def herplaatsen1(self,wumpuspositie):
+		self.xcoor = randrange(1,6)
+		self.ycoor = randrange(1,5)
+		if (self.xcoor, self.ycoor) == wumpuspositie:
+			self.herplaatsen1()
+		else:
+			return self.xcoor, self.ycoor
 		
 	def returnlocatieheld(self):
 		return self.positie

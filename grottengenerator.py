@@ -21,7 +21,7 @@ class Grottengenerator():
 		for grot in self.grotten:
 			if grot[0] != self.spawnplaatsSelf:
 				keuzeelement = randrange(0,3)
-				if randrange(0,11) <= 1:
+				if randrange(0,11) == 0:
 					if keuzeelement == 0:
 						grot[1] = 'Goud'
 					if keuzeelement == 1:
