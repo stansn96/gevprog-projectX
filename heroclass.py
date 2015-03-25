@@ -38,10 +38,10 @@ class Hero():
 		
 	def goudgevonden(self):
 		self.goud = self.goud + 1
-		return self.goud
+		return int(self.goud -1)
 	
 	def goudaantal(self):
-		return self.goud
+		return int(self.goud -1)
 		
 	def pijlaantal(self):
 		return self.pijlen
