@@ -190,46 +190,7 @@ class Ui_Form(QtGui.QWidget):
         self.scene.addItem(self.heropic)
 
     def coordConverter(self, coord):
-        if coord == (1, 1):
-            return 20, 10
-        if coord == (1, 2):
-            return 20, 110
-        if coord == (1, 3):
-            return 20, 210
-        if coord == (1, 4):
-            return 20, 310
-        if coord == (2, 1):
-            return 140, 10
-        if coord == (2, 2):
-            return 140, 110
-        if coord == (2, 3):
-            return 140, 210
-        if coord == (2, 4):
-            return 140, 310
-        if coord == (3, 1):
-            return 260, 10
-        if coord == (3, 2):
-            return 260, 110
-        if coord == (3, 3):
-            return 260, 210
-        if coord == (3, 4):
-            return 260, 310
-        if coord == (4, 1):
-            return 380, 10
-        if coord == (4, 2):
-            return 380, 110
-        if coord == (4, 3):
-            return 380, 210
-        if coord == (4, 4):
-            return 380, 310
-        if coord == (5, 1):
-            return 500, 10
-        if coord == (5, 2):
-            return 500, 110
-        if coord == (5, 3):
-            return 500, 210
-        if coord == (5, 4):
-            return 500, 310
+        return coord[0] - 1 * 120 + 20, coord[1] - 1 * 100 + 10
 
     def heldstap(self, richting): #bewegingssysteem van Matthijs Bonnema
         if self.stappen == True:
