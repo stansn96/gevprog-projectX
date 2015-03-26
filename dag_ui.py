@@ -451,8 +451,6 @@ class Afhandelen(QtCore.QThread):
     def actionMove(self):
         self.beweging = "beweeg"
 
-    def actionShoot(self):
-        self.beweging = "shoot"
 
 def run():
     app = QtGui.QApplication(sys.argv)

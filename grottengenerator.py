@@ -1,6 +1,7 @@
 from random import *
 from spawn import spawn
 
+"""Class voor het genereren van grotten"""
 class Grottengenerator():
         def __init__(self, spawnplaatsSelf, spawnplaatsWumpus):
                 self.grottenlijst = []
@@ -9,6 +10,7 @@ class Grottengenerator():
                 self.spawnplaatsWumpus=spawnplaatsWumpus
                 self.elementen()
                 
+        """Maak een lijst met coordinaten van de grotten aan"""        
         def maakgrotten(self):
                 self.grotten = []
                 for y in range(1,5):
@@ -29,12 +31,6 @@ class Grottengenerator():
                                         if keuzeelement == 2:
                                                 grot[1] = 'Put'
                 return self.grotten
-
-        def returnherocoords(self):
-                return self.spawnplaatsSelf
-                        
-        def returnwumpuscoords(self):
-                return self.spawnplaatsWumpus
 
         def returngrotten(self):
                 return self.grotten
