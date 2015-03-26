@@ -88,6 +88,7 @@ class Hero():
 	def __str__(self):
 		return "Naam van de held: {} Positie(x,y) {} Aantal goud: {} Aantal pijlen: {}".format(self.naam,self.positie,self.goud,self.pijlen)
 		
+	"""Functie voor het opvangen van coordinaten buiten de map en het verplaatsen van de hero"""
 	def moveup(self):
 		self.ycoor -= 1  
 		if self.ycoor < 1:
