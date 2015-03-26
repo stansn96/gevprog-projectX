@@ -3,6 +3,7 @@ from grottengenerator import *
 from spawn import *
 from random import *
 
+"""Class voor het aanmaken van de Wumpus"""
 class Wumpus():
 	def __init__(self, locatieheld):
 		self.xposheld = locatieheld[0]
@@ -16,12 +17,14 @@ class Wumpus():
 		self.xpos= randrange(1,6)
 		self.ypos=randrange(1,5)
 		spawnplaatsWumpus = (self.xpos,self.ypos)
+		"""Check of de wumpus wel 2 stappen van de hero af gespawnt wordt"""
 		while abs(self.xpos - self.xposheld) <2:
 			self.xpos= randrange(1,6)
 		while abs(self.ypos - self.yposheld) <2:     
 			self.ypos=randrange(1,5)
 		self.updatepositie()
 		
+	"""Functie voor het bewegen van de Wumpus bij gemist schot, wordt dus niet gebruikt"""	
 	def movewumpus(self):
 		randomgetal = randrange(1,5)
 		if randomgetal == 1:
@@ -46,6 +49,7 @@ class Wumpus():
 		return [self.xpos,self.ypos]
 		
 	def jagen(self,locatieheld):
+		"""Wumpus via snelst mogelijke route laten jagen op de hero"""
 		self.xposheld, self.yposheld = locatieheld
 		xafstand = abs(self.xpos - self.xposheld)
 		yafstand = abs(self.ypos - self.yposheld)
@@ -83,6 +87,3 @@ class Wumpus():
 		self.wumpuspositie = (self.xpos,self.ypos)
 		return self.wumpuspositie
 		
-	
-		
-
