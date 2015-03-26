@@ -32,6 +32,14 @@ class Wumpus():
 			self.ypos = self.ypos +1
 		if randomgetal == 4:
 			self.ypos = self.ypos -1
+		if self.xpos == 0:
+			self.xpos = 5
+		if self.xpos == 6:
+			self.xpos = 1
+		if self.ypos == 0:
+			self.ypos = 4
+		if self.ypos == 5:
+			self.ypos = 1
 		self.updatepositie()
 			
 	def returnlocatiewumpus(self):

@@ -33,6 +33,9 @@ class Hero():
 		else:
 			return self.xcoor, self.ycoor
 		
+	def naamreturn(self):
+		return self.naam
+	
 	def returnlocatieheld(self):
 		return self.positie
 		
