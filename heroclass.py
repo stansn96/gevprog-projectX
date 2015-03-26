@@ -3,6 +3,7 @@ from grottengenerator import *
 from spawn import *
 from wumpusclass import *
 
+"""Class voor het poppetje waarmee je rondloopt"""
 class Hero():
 	def __init__(self,naam):
 		self.naam = naam
@@ -17,6 +18,7 @@ class Hero():
 		self.ycoor = randrange(1,5)
 		self.updatepositie()
 	
+	"""Functie voor het respawnen, zorgt ervoor dat je niet op de wumpus kunt spawnen"""
 	def herplaatsen(self,wumpuspositie):
 		self.xcoor = randrange(1,6)
 		self.ycoor = randrange(1,5)
@@ -24,7 +26,8 @@ class Hero():
 			self.herplaatsen()
 		else:
 			self.updatepositie()
-	
+			
+	"""Functie voor het respawnen als je bent opgepakt door een vleermuis."""
 	def herplaatsen1(self,wumpuspositie):
 		self.xcoor = randrange(1,6)
 		self.ycoor = randrange(1,5)
@@ -49,6 +52,7 @@ class Hero():
 	def pijlaantal(self):
 		return self.pijlen
 	
+	"""Poging tot functie voor schieten. Werkt niet"""
 	def schieten(self,wumpuslocatie):
 		self.pijlxcoor = self.xcoor
 		self.pijlycoor = self.ycoor
@@ -85,7 +89,7 @@ class Hero():
 		return "Naam van de held: {} Positie(x,y) {} Aantal goud: {} Aantal pijlen: {}".format(self.naam,self.positie,self.goud,self.pijlen)
 		
 	def moveup(self):
-		self.ycoor -= 1  # due to inverted coordinates of UI
+		self.ycoor -= 1  
 		if self.ycoor < 1:
 			self.ycoor = 4
 		self.updatepositie()
@@ -97,7 +101,7 @@ class Hero():
 		self.updatepositie()
 
 	def movedown(self):
-		self.ycoor += 1  # due to inverted coordinates of UI
+		self.ycoor += 1  
 		if self.ycoor > 4:
 			self.ycoor = 1
 		self.updatepositie()
