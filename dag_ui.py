@@ -152,7 +152,7 @@ class Ui_Form(QtGui.QWidget):
 
         self.setinfobericht("Welkom bij Hunt the Wumpus, Held\nWe hebben je nodig om de wumpus te verslaan!")
 		
-		"""Aanmaken van de Wumpus en grottenstelsel wordt gegenereerd. Pixels van Hero worden berekend en Hero wordt op juiste plek geplaatst."""
+        """Aanmaken van de Wumpus en grottenstelsel wordt gegenereerd. Pixels van Hero worden berekend en Hero wordt op juiste plek geplaatst."""
         self.wumpus = Wumpus(self.hero.updatepositie())
         self.kamerplan = Grottengenerator(self.hero.updatepositie(), self.wumpus.updatepositie())
         positievandehero = self.hero.updatepositie()
@@ -403,9 +403,9 @@ class Afhandelen(QtCore.QThread):
                             sleep(1)
                             ui.setinfobericht("En dat overleefde je niet!\n")
                             levend = False
-                            
-            """Code voor schieten, werkt niet"""                            
+                                                  
             elif self.beweging == "schiet":
+                """Code voor schieten, werkt niet"""
                 self.xarrow,self.yarrow= ui.hero.updatepositie()
                 ui.schieten()
                 ui.setinfobericht("\nKlik 4 keer op de richting waar de pijl heenmoet!\n")
