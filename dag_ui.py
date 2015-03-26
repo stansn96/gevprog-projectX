@@ -199,48 +199,48 @@ class Ui_Form(QtGui.QWidget):
     def coordsberekenen(self, coord):
         return (coord[0] - 1) * 120 + 20, (coord[1] - 1) * 100 + 10
 
-    def heldstap(self, richting): #bewegingssysteem van Matthijs Bonnema
+    def heldstap(self, richting):   #met behulp van code van groepje Matthijs
         if self.stappen == True:
             self.plek = self.hero.updatepositie()
-            if richting == "links":
-                if self.plek[0] == 1:
-                    self.speelbord.richting = "links"
-                    self.heldfoto.setPixmap(QtGui.QPixmap('left.png'))
-                    self.heldfoto.moveBy(480 , 0)
-                else:
-                    self.speelbord.richting = "links"
-                    self.heldfoto.setPixmap(QtGui.QPixmap('left.png'))
-                    self.heldfoto.moveBy(-120, 0)
+            if richting == "links" and self.plek[0] == 1:
+                self.speelbord.richting = "links"
+                self.heldfoto.setPixmap(QtGui.QPixmap('left.png'))
+                self.heldfoto.moveBy(480 , 0)
                 self.hero.moveleft()
-            if richting == "rechts":
-                if self.plek[0] == 5:
-                    self.speelbord.richting = "rechts"
-                    self.heldfoto.setPixmap(QtGui.QPixmap('right.png'))
-                    self.heldfoto.moveBy(-480 , 0)
-                else:
-                    self.speelbord.richting = "rechts"
-                    self.heldfoto.setPixmap(QtGui.QPixmap('right.png'))
-                    self.heldfoto.moveBy(120, 0)
+            if richting == "links" and self.plek[0] != 1:
+                self.speelbord.richting = "links"
+                self.heldfoto.setPixmap(QtGui.QPixmap('left.png'))
+                self.heldfoto.moveBy(-120, 0)
+                self.hero.moveleft()
+            if richting == "rechts" and self.plek[0] == 5:
+                self.speelbord.richting = "rechts"
+                self.heldfoto.setPixmap(QtGui.QPixmap('right.png'))
+                self.heldfoto.moveBy(-480 , 0)
                 self.hero.moveright()
-            if richting == "omhoog":
-                if self.plek[1] == 1:
-                    self.speelbord.richting = "omhoog"
-                    self.heldfoto.setPixmap(QtGui.QPixmap('up.png'))
-                    self.heldfoto.moveBy(0, 300)
-                else:
-                    self.speelbord.richting = "omhoog"
-                    self.heldfoto.setPixmap(QtGui.QPixmap('up.png'))
-                    self.heldfoto.moveBy(00, -100)
+            if richting == "rechts" and self.plek[0] != 5:
+                self.speelbord.richting = "rechts"
+                self.heldfoto.setPixmap(QtGui.QPixmap('right.png'))
+                self.heldfoto.moveBy(120, 0)
+                self.hero.moveright()
+            if richting == "omhoog" and self.plek[1] == 1:
+                self.speelbord.richting = "omhoog"
+                self.heldfoto.setPixmap(QtGui.QPixmap('up.png'))
+                self.heldfoto.moveBy(0, 300)
                 self.hero.moveup()
-            if richting == "omlaag":
-                if self.plek[1] == 4:
-                    self.speelbord.richting = "omlaag"
-                    self.heldfoto.setPixmap(QtGui.QPixmap('face.png'))
-                    self.heldfoto.moveBy(0, -300)
-                else:
-                    self.speelbord.richting = "omlaag"
-                    self.heldfoto.setPixmap(QtGui.QPixmap('face.png'))
-                    self.heldfoto.moveBy(0, 100)
+            if richting == "omhoog" and self.plek[1] != 1:
+                self.speelbord.richting = "omhoog"
+                self.heldfoto.setPixmap(QtGui.QPixmap('up.png'))
+                self.heldfoto.moveBy(00, -100)
+                self.hero.moveup()
+            if richting == "omlaag" and self.plek[1] == 4:
+                self.speelbord.richting = "omlaag"
+                self.heldfoto.setPixmap(QtGui.QPixmap('face.png'))
+                self.heldfoto.moveBy(0, -300)
+                self.hero.movedown()
+            if richting == "omlaag" and self.plek[1] != 4:
+                self.speelbord.richting = "omlaag"
+                self.heldfoto.setPixmap(QtGui.QPixmap('face.png'))
+                self.heldfoto.moveBy(0, 100)
                 self.hero.movedown()
     
     def setstappen(self):
@@ -269,11 +269,6 @@ class Ui_Form(QtGui.QWidget):
 
     def koppelFunctieSchiet(self):
         self.koppelFunctie("schiet") 
-    
-    def respawn(self):
-        ui.hero.herplaatsen()
-        xCor, yCor = self.coordsberekenen(self.hero.updatepositie())
-        self.heldfoto.setPos(xCor, yCor)
     
     def win(self):
         self.setinfobericht("Gefelciteerd je hebt de wumpus verslagen!\n")
@@ -448,9 +443,6 @@ class Afhandelen(QtCore.QThread):
         else:
             ui.win()
 
-    def actionMove(self):
-        self.beweging = "beweeg"
-
 
 def run():
     app = QtGui.QApplication(sys.argv)
@@ -464,4 +456,3 @@ if __name__ == "__main__":
     ui = Ui_Form()
     ui.show()
     sys.exit(app.exec_())
-
