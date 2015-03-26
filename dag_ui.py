@@ -21,11 +21,12 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
+"""Class voor de grafische interface"""
 class Ui_Form(QtGui.QWidget):
     def __init__(self):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
-
+    """Class voor het doorgeven van de richting aan de heldstap functie """
     def koppelFunctie(self, beurt):
             if beurt == "links":
                 self.heldstap("links")
@@ -39,7 +40,8 @@ class Ui_Form(QtGui.QWidget):
                 self.speelbord.beweging = "schiet"
             if beurt == "beweeg":
                 self.speelbord.beweging = "beweeg"
-
+                
+    """Class voor het opzetten van de grafische interface. Deze class en de retranslate class zijn gegenereerd met het programma QT Designer"""
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(969, 674)
@@ -145,10 +147,12 @@ class Ui_Form(QtGui.QWidget):
         self.ArrowLabel.setText(_translate("Form", "Pijlen", None))
         self.GoldLabel.setText(_translate("Form", "Goud", None))
 
+        """Aanmaken van de Hero"""
         self.hero = Hero("Held")
 
         self.setinfobericht("Welkom bij Hunt the Wumpus, Held\nWe hebben je nodig om de wumpus te verslaan!")
 		
+		"""Aanmaken van de Wumpus en grottenstelsel wordt gegenereerd. Pixels van Hero worden berekend en Hero wordt op juiste plek geplaatst."""
         self.wumpus = Wumpus(self.hero.updatepositie())
         self.kamerplan = Grottengenerator(self.hero.updatepositie(), self.wumpus.updatepositie())
         positievandehero = self.hero.updatepositie()
@@ -162,6 +166,7 @@ class Ui_Form(QtGui.QWidget):
         self.connect(self.speelbord, QtCore.SIGNAL("pijl"), self.veranderpijlen, QtCore.Qt.DirectConnection)
         self.connect(self.speelbord, QtCore.SIGNAL("beweging"), self.opnieuwbeurt, QtCore.Qt.DirectConnection)
         
+        """Koppel de buttons aan de koppelfunctie, die vervolgende de juiste waarden doorgeeft aan de daarvoor geschikte functie"""
         self.BtnLeft.clicked.connect(self.koppelFunctieLinks)
         self.BtnRight.clicked.connect(self.koppelFunctieRechts)
         self.BtnUp.clicked.connect(self.koppelFunctieOmhoog)
@@ -169,7 +174,7 @@ class Ui_Form(QtGui.QWidget):
         self.BtnMove.clicked.connect(self.koppelFunctieBeweeg)
         self.BtnShoot.clicked.connect(self.koppelFunctieSchiet)
 
-
+    """Class voor het tonen van een bericht in de UI"""
     def setinfobericht(self, bericht):
         self.info.setText(_translate("Form", bericht, None))
 
@@ -182,13 +187,15 @@ class Ui_Form(QtGui.QWidget):
         goud = self.hero.goudaantal()
         self.GoldAmount.display(goud)          
 
+    """Maak een Pixmapitem voor de hero, schaal deze en voeg deze toe aan de map"""
     def sethero(self, herox, heroy):
         self.heldfoto = QtGui.QGraphicsPixmapItem()
         self.heldfoto.setPixmap(QtGui.QPixmap("face.png"))
         self.heldfoto.setPos(herox,heroy)
         self.heldfoto.scale(0.5,0.5)
         self.scene.addItem(self.heldfoto)
-
+    
+    """Zet coordinaten om in coordinaten in pixels"""
     def coordsberekenen(self, coord):
         return (coord[0] - 1) * 120 + 20, (coord[1] - 1) * 100 + 10
 
@@ -242,7 +249,6 @@ class Ui_Form(QtGui.QWidget):
     def schieten(self):
         self.schieten = True
     
-
     def opnieuwstappen(self):
         self.stappen = False
         
@@ -263,19 +269,18 @@ class Ui_Form(QtGui.QWidget):
 
     def koppelFunctieSchiet(self):
         self.koppelFunctie("schiet") 
-
+    
     def respawn(self):
         ui.hero.herplaatsen()
         xCor, yCor = self.coordsberekenen(self.hero.updatepositie())
         self.heldfoto.setPos(xCor, yCor)
-        
+    
     def win(self):
         self.setinfobericht("Gefelciteerd je hebt de wumpus verslagen!\n")
         sleep(1)
         self.setinfobericht("Je vond {} goud en had {} pijlen over".format(self.hero.goudaantal(),(self.hero.pijlaantal())))
         self.speelbord.quit()
         
-
     def dood(self, won):
         self.setinfobericht("Helaas, je bent dood!\nJe vond {} goud en had {} pijlen over".format(self.hero.goudaantal(),(self.hero.pijlaantal())))
         self.speelbord.quit()
@@ -286,6 +291,7 @@ class Ui_Form(QtGui.QWidget):
     def opnieuwbeurt(self):
         self.speelbord.beweging = None
 
+"""Thread aangemaakt zodat stappen uitgevoerd kunnen worden zonder lang te wachten & zonder dat programma crasht"""
 class Afhandelen(QtCore.QThread):
     def __init__(self):
         QtCore.QThread.__init__(self)
@@ -301,7 +307,8 @@ class Afhandelen(QtCore.QThread):
         self.emit(QtCore.SIGNAL("pijl"))
          
         kamerplanvariabele = ui.kamerplan.returngrotten()
-           
+        
+        """Checken of er items rondom de hero zijn"""
         while levend:
             items = []
 
@@ -363,6 +370,7 @@ class Afhandelen(QtCore.QThread):
             while self.beweging == None:
                 sleep(1)
             
+            """Code voor schieten proberen te maken, werkt niet"""
             self.schietpositie=[]
             if self.beweging == "beweeg":
                 ui.setstappen()
@@ -395,7 +403,8 @@ class Afhandelen(QtCore.QThread):
                             sleep(1)
                             ui.setinfobericht("En dat overleefde je niet!\n")
                             levend = False
-                                        
+                            
+            """Code voor schieten, werkt niet"""                            
             elif self.beweging == "schiet":
                 self.xarrow,self.yarrow= ui.hero.updatepositie()
                 ui.schieten()
